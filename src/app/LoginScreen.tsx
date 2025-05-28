@@ -8,6 +8,7 @@ import * as React from 'react';
 import { useState } from 'react';
 import {
   Image,
+  ScrollView,
   Platform,
   StyleSheet,
   Text,
@@ -17,8 +18,8 @@ import {
 } from 'react-native';
 
 // Images
-const ChevronLeft = require("@/../assets/images/ChevronLeft.png");
-const MonkeyLogo = require('@/../assets/images/MonkeyLogo.png');
+const ChevronLeft = require("../../assets/images/ChevronLeft.png");
+const MonkeyLogo = require('../../assets/images/MonkeyLogo.png');
 
 export const Colors = {
   light: {
@@ -60,98 +61,92 @@ export default function LoginScreen() {
   const [password, setPassword] = useState('');
 
   return (
-    // Degradê de fundo
-    <LinearGradient
-      colors={['#4A90E2', '#357ABD']}
-      style={styles.fullScreen}
-    >
-      <StatusBar style={theme === 'light' ? 'dark' : 'light'} />
-
-      {/* Header com botão Voltar */}
-      <TouchableOpacity
-        style={styles.backButton}
-        activeOpacity={0.7}
-        onPress={() => router.back()}
+    <ScrollView>
+       {/* Degradê de fundo*/}
+      <LinearGradient
+        colors={['#4A90E2', '#357ABD']}
+        style={styles.fullScreen}
       >
-        <Image source={ChevronLeft} style={{ width: 24, height: 24, tintColor: Colors[theme].text }} />
-        <Text style={[styles.backText, { color: Colors[theme].text }]}>
-          voltar
+        <StatusBar style={theme === 'light' ? 'dark' : 'light'} />
+        {/* Header com botão Voltar */}
+        <TouchableOpacity
+          style={styles.backButton}
+          activeOpacity={0.7}
+          onPress={() => router.back()}
+        >
+          <Image source={ChevronLeft} style={{ width: 24, height: 24, tintColor: Colors[theme].text }} />
+          <Text style={[styles.backText, { color: Colors[theme].text }]}>
+            voltar
+          </Text>
+        </TouchableOpacity>
+        {/* Avatar do macaco */}
+        <View style={styles.logoContainer}>
+          <Image source={MonkeyLogo} style={{ width: 100, height: 100 }} />
+        </View>
+        {/* Título de boas-vindas */}
+        <Text style={[styles.title, { color: Colors[theme].text }]}>
+          Olá, bem vindo.
         </Text>
-      </TouchableOpacity>
-
-      {/* Avatar do macaco */}
-      <View style={styles.logoContainer}>
-        <Image source={MonkeyLogo} style={{ width: 100, height: 100 }} />
-      </View>
-
-      {/* Título de boas-vindas */}
-      <Text style={[styles.title, { color: Colors[theme].text }]}>
-        Olá, bem vindo.
-      </Text>
-
-      {/* Label e input de usuário */}
-      <Text style={[styles.label, { color: Colors[theme].text }]}>
-        Email de usuario:
-      </Text>
-      <TextInput
-        style={[
-          styles.input,
-          { backgroundColor: Colors[theme].inputBackground }
-        ]}
-        placeholder="Email de usuario"
-        placeholderTextColor={Colors[theme].placeholder}
-        value={username}
-        onChangeText={setUsername}
-      />
-
-      {/* Label e input de senha */}
-      <Text style={[styles.label, { color: Colors[theme].text }]}>
-        Senha:
-      </Text>
-      <TextInput
-        style={[
-          styles.input,
-          { backgroundColor: Colors[theme].inputBackground }
-        ]}
-        placeholder="Senha"
-        placeholderTextColor={Colors[theme].placeholder}
-        secureTextEntry
-        value={password}
-        onChangeText={setPassword}
-      />
-
-      {/* Botão Entrar */}
-      <TouchableOpacity
-        style={[
-          styles.button,
-          {
-            backgroundColor:
-              username && password
-                ? Colors[theme].buttonBackground
-                : Colors[theme].buttonDisabled,
-          },
-        ]}
-        disabled={!username || !password}
-        activeOpacity={0.7}
-        onPress={() => {/* handle login */}}
-      >
-        <Text style={[styles.buttonText, { color: Colors[theme].buttonText }]}>
-          Entrar
+        {/* Label e input de usuário */}
+        <Text style={[styles.label, { color: Colors[theme].text }]}>
+          Email de usuario:
         </Text>
-      </TouchableOpacity>
-
-      {/* Link de cadastro */}
-      <TouchableOpacity onPress={() => router.push('./SingupScreen')}>
-        <Text style={[styles.link, { color: Colors[theme].link }]}>
-          Não possuo conta? Cadastre-se
+        <TextInput
+          style={[
+            styles.input,
+            { backgroundColor: Colors[theme].inputBackground }
+          ]}
+          placeholder="Email de usuario"
+          placeholderTextColor={Colors[theme].placeholder}
+          value={username}
+          onChangeText={setUsername}
+        />
+        {/* Label e input de senha */}
+        <Text style={[styles.label, { color: Colors[theme].text }]}>
+          Senha:
         </Text>
-      </TouchableOpacity>
-
-      {/* Rodapé de crédito */}
-      <Text style={[styles.footer, { color: Colors[theme].textSecondary }]}>
-        ©WindRoseCode
-      </Text>
-    </LinearGradient>
+        <TextInput
+          style={[
+            styles.input,
+            { backgroundColor: Colors[theme].inputBackground }
+          ]}
+          placeholder="Senha"
+          placeholderTextColor={Colors[theme].placeholder}
+          secureTextEntry
+          value={password}
+          onChangeText={setPassword}
+        />
+        {/* Botão Entrar */}
+        <TouchableOpacity
+          style={[
+            styles.button,
+            {
+              backgroundColor:
+                username && password
+                  ? Colors[theme].buttonBackground
+                  : Colors[theme].buttonDisabled,
+            },
+          ]}
+          disabled={!username || !password}
+          activeOpacity={0.7}
+          onPress={() => {/* handle login */}}
+        >
+          <Text style={[styles.buttonText, { color: Colors[theme].buttonText }]}>
+            Entrar
+          </Text>
+        </TouchableOpacity>
+        {/* Link de cadastro */}
+        <TouchableOpacity onPress={() => router.push('./SingupScreen')}>
+          <Text style={[styles.link, { color: Colors[theme].link }]}>
+            Não possuo conta? Cadastre-se
+          </Text>
+        </TouchableOpacity>
+        {/* Rodapé de crédito */}
+        <Text style={[styles.footer, { color: Colors[theme].textSecondary }]}>
+          ©WindRoseCode
+        </Text>
+      </LinearGradient>
+    </ScrollView>
   );
 }
 

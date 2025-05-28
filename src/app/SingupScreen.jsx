@@ -7,6 +7,7 @@ import { StatusBar } from 'expo-status-bar';
 import { useState } from 'react';
 import {
     Image,
+    ScrollView,
     Platform,
     StyleSheet,
     Text,
@@ -16,8 +17,8 @@ import {
 } from 'react-native';
 
 // Imagens
-const ChevronLeft = require("@/../assets/images/ChevronLeft.png");
-const MonkeyLogo = require('@/../assets/images/MonkeyLogo.png');
+const ChevronLeft = require("../../assets/images/ChevronLeft.png");
+const MonkeyLogo = require('../../assets/images/MonkeyLogo.png');
 import {Colors} from "../../constants/Colors";
 
 export default function SignupScreen() {
@@ -29,123 +30,115 @@ export default function SignupScreen() {
   const [password, setPassword] = useState('');
 
   return (
-    <LinearGradient
-      colors={['#4A90E2', '#357ABD']}
-      style={styles.fullScreen}
-    >
-      <StatusBar style={theme === 'light' ? "dark" : "light"} />
-
-      {/* Header com botão Voltar */}
-      <TouchableOpacity
-        style={styles.backButton}
-        activeOpacity={0.7}
-        onPress={() => router.back()}
+    <ScrollView>
+      <LinearGradient
+        colors={['#4A90E2', '#357ABD']}
+        style={styles.fullScreen}
       >
-        <Image
-          source={ChevronLeft}
-          style={[styles.icon, { tintColor: Colors[theme].text }]}
+        <StatusBar style={theme === 'light' ? "dark" : "light"} />
+        {/* Header com botão Voltar */}
+        <TouchableOpacity
+          style={styles.backButton}
+          activeOpacity={0.7}
+          onPress={() => router.back()}
+        >
+          <Image
+            source={ChevronLeft}
+            style={[styles.icon, { tintColor: Colors[theme].text }]}
+          />
+          <Text style={[styles.backText, { color: Colors[theme].text }]}>
+            voltar
+          </Text>
+        </TouchableOpacity>
+        {/* Avatar do macaco */}
+        <View style={styles.logoContainer}>
+          <Image
+            source={MonkeyLogo}
+            style={styles.logoImage}
+          />
+        </View>
+        {/* Título de boas-vindas */}
+        <Text style={[styles.title, { color: Colors[theme].text }]}>
+          Olá, bem vindo.
+        </Text>
+        {/* Nome de usuário */}
+        <Text style={[styles.label, { color: Colors[theme].text }]}>
+          Nome de usuario:
+        </Text>
+        <TextInput
+          style={[styles.input, { backgroundColor: Colors[theme].inputBackground }]}
+          placeholder="Nome de usuario"
+          placeholderTextColor={Colors[theme].placeholder}
+          value={username}
+          onChangeText={setUsername}
         />
-        <Text style={[styles.backText, { color: Colors[theme].text }]}>
-          voltar
+        {/* Email */}
+        <Text style={[styles.label, { color: Colors[theme].text }]}>
+          Email:
         </Text>
-      </TouchableOpacity>
-
-      {/* Avatar do macaco */}
-      <View style={styles.logoContainer}>
-        <Image
-          source={MonkeyLogo}
-          style={styles.logoImage}
+        <TextInput
+          style={[styles.input, { backgroundColor: Colors[theme].inputBackground }]}
+          placeholder="Email"
+          placeholderTextColor={Colors[theme].placeholder}
+          keyboardType="email-address"
+          autoCapitalize="none"
+          value={email}
+          onChangeText={setEmail}
         />
-      </View>
-
-      {/* Título de boas-vindas */}
-      <Text style={[styles.title, { color: Colors[theme].text }]}>
-        Olá, bem vindo.
-      </Text>
-
-      {/* Nome de usuário */}
-      <Text style={[styles.label, { color: Colors[theme].text }]}>
-        Nome de usuario:
-      </Text>
-      <TextInput
-        style={[styles.input, { backgroundColor: Colors[theme].inputBackground }]}
-        placeholder="Nome de usuario"
-        placeholderTextColor={Colors[theme].placeholder}
-        value={username}
-        onChangeText={setUsername}
-      />
-
-      {/* Email */}
-      <Text style={[styles.label, { color: Colors[theme].text }]}>
-        Email:
-      </Text>
-      <TextInput
-        style={[styles.input, { backgroundColor: Colors[theme].inputBackground }]}
-        placeholder="Email"
-        placeholderTextColor={Colors[theme].placeholder}
-        keyboardType="email-address"
-        autoCapitalize="none"
-        value={email}
-        onChangeText={setEmail}
-      />
-
-      {/* CPF */}
-      <Text style={[styles.label, { color: Colors[theme].text }]}>
-        CPF:
-      </Text>
-      <TextInput
-        style={[styles.input, { backgroundColor: Colors[theme].inputBackground }]}
-        placeholder="CPF"
-        placeholderTextColor={Colors[theme].placeholder}
-        value={cpf}
-        onChangeText={setCpf}
-      />
-
-      {/* Senha */}
-      <Text style={[styles.label, { color: Colors[theme].text }]}>
-        Senha:
-      </Text>
-      <TextInput
-        style={[styles.input, { backgroundColor: Colors[theme].inputBackground }]}
-        placeholder="Senha"
-        placeholderTextColor={Colors[theme].placeholder}
-        secureTextEntry
-        value={password}
-        onChangeText={setPassword}
-      />
-
-      {/* Botão Cadastrar */}
-      <TouchableOpacity
-        style={[
-          styles.button,
-          {
-            backgroundColor:
-              username && email && cpf && password
-                ? Colors[theme].buttonBackground
-                : Colors[theme].buttonDisabled,
-          },
-        ]}
-        disabled={!username || !email || !cpf || !password}
-        activeOpacity={0.7}
-        onPress={() => { /* handle signup */ }}
-      >
-        <Text style={[styles.buttonText, { color: Colors[theme].buttonText }]}>
-          Cadastrar
+        {/* CPF */}
+        <Text style={[styles.label, { color: Colors[theme].text }]}>
+          CPF:
         </Text>
-      </TouchableOpacity>
-
-      {/* Link para login */}
-      <TouchableOpacity onPress={() => router.push('./LoginScreen')}>
-        <Text style={[styles.link, { color: Colors[theme].link }]}>
-          Já possui conta? Fazer login
+        <TextInput
+          style={[styles.input, { backgroundColor: Colors[theme].inputBackground }]}
+          placeholder="CPF"
+          placeholderTextColor={Colors[theme].placeholder}
+          value={cpf}
+          onChangeText={setCpf}
+        />
+        {/* Senha */}
+        <Text style={[styles.label, { color: Colors[theme].text }]}>
+          Senha:
         </Text>
-      </TouchableOpacity>
-
-      {/* Rodapé de crédito */}
-      <Text style={[styles.footer, { color: Colors[theme].textSecondary }]}>
-        ©WindRoseCode
-      </Text>
-    </LinearGradient>
+        <TextInput
+          style={[styles.input, { backgroundColor: Colors[theme].inputBackground }]}
+          placeholder="Senha"
+          placeholderTextColor={Colors[theme].placeholder}
+          secureTextEntry
+          value={password}
+          onChangeText={setPassword}
+        />
+        {/* Botão Cadastrar */}
+        <TouchableOpacity
+          style={[
+            styles.button,
+            {
+              backgroundColor:
+                username && email && cpf && password
+                  ? Colors[theme].buttonBackground
+                  : Colors[theme].buttonDisabled,
+            },
+          ]}
+          disabled={!username || !email || !cpf || !password}
+          activeOpacity={0.7}
+          onPress={() => { /* handle signup */ }}
+        >
+          <Text style={[styles.buttonText, { color: Colors[theme].buttonText }]}>
+            Cadastrar
+          </Text>
+        </TouchableOpacity>
+        {/* Link para login */}
+        <TouchableOpacity onPress={() => router.push('./LoginScreen')}>
+          <Text style={[styles.link, { color: Colors[theme].link }]}>
+            Já possui conta? Fazer login
+          </Text>
+        </TouchableOpacity>
+        {/* Rodapé de crédito */}
+        <Text style={[styles.footer, { color: Colors[theme].textSecondary }]}>
+          ©WindRoseCode
+        </Text>
+      </LinearGradient>
+    </ScrollView>
   );
 }
 
