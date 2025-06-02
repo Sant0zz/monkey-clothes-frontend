@@ -1,4 +1,4 @@
-// src/app/pedidos.tsx
+
 
 import React, { useState } from 'react';
 import {
@@ -12,13 +12,12 @@ import {
   StatusBar,
   SafeAreaView,
   Modal,
-  Pressable, // Usado para fechar o modal ao clicar fora
+  Pressable, 
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
 
-// --- PASSO 1: Atualizar os dados de pedidos de demonstração ---
-// Adicionamos todos os campos necessários para exibir no modal.
+
 const pedidosExemplo = [
   {
     id: '00001',
@@ -41,23 +40,23 @@ const pedidosExemplo = [
   },
 ];
 
-// Definindo os tipos para o nosso pedido (boa prática com TypeScript)
+
 type Pedido = typeof pedidosExemplo[0];
 
 const TelaPedidos = () => {
   const navegador = useRouter();
 
-  // --- PASSO 2: Criar estados para controlar o modal ---
+
   const [modalVisivel, setModalVisivel] = useState(false);
   const [pedidoSelecionado, setPedidoSelecionado] = useState<Pedido | null>(null);
 
-  // Função para abrir o modal com os dados do pedido selecionado
+  
   const abrirModal = (pedido: Pedido) => {
     setPedidoSelecionado(pedido);
     setModalVisivel(true);
   };
 
-  // --- PASSO 4: Tornar o item da lista clicável ---
+  
   const renderizarItemPedido = ({ item }: { item: Pedido }) => (
     <TouchableOpacity onPress={() => abrirModal(item)}>
       <View style={estilos.itemPedido}>
@@ -105,7 +104,7 @@ const TelaPedidos = () => {
           contentContainerStyle={estilos.containerLista}
         />
 
-        {/* --- PASSO 3: Criar o componente Modal --- */}
+        
         {pedidoSelecionado && (
           <Modal
             animationType="fade"
@@ -158,7 +157,7 @@ const TelaPedidos = () => {
   );
 };
 
-// --- NOVOS ESTILOS PARA O MODAL ---
+
 const estilos = StyleSheet.create({
   areaSegura: { flex: 1, backgroundColor: '#F2F2F7' },
   container: { flex: 1, paddingHorizontal: 20 },
@@ -176,12 +175,12 @@ const estilos = StyleSheet.create({
   itemPedido: { backgroundColor: '#E9E9EB', padding: 20, borderRadius: 12, marginBottom: 10 },
   textoItemPedido: { fontSize: 16, color: '#333' },
 
-  // Estilos do Modal
+ 
   overlayModal: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'rgba(0, 0, 0, 0.5)', // Fundo semi-transparente
+    backgroundColor: 'rgba(0, 0, 0, 0.5)', 
   },
   visualizacaoModal: {
     margin: 20,
@@ -221,11 +220,11 @@ const estilos = StyleSheet.create({
     color: '#333',
   },
   textoVerde: {
-    color: '#34C759', // Verde
+    color: '#34C759', 
     fontWeight: 'bold',
   },
   textoLaranja: {
-    color: '#FF9500', // Laranja
+    color: '#FF9500', 
     fontWeight: 'bold',
   },
   botaoNFC: {
@@ -243,7 +242,7 @@ const estilos = StyleSheet.create({
     fontSize: 16,
   },
   botaoWhatsapp: {
-    backgroundColor: '#25D366', // Cor oficial do WhatsApp
+    backgroundColor: '#25D366', 
     width: 60,
     height: 60,
     borderRadius: 15,
