@@ -17,8 +17,7 @@ import {
 } from 'react-native';
 
 // Imagens
-const ChevronLeft = require("../../assets/images/ChevronLeft.png");
-const MonkeyLogo = require('../../assets/images/MonkeyLogo.png');
+const MonkeyLogo = require('../../assets/images/logo-branco.png');
 import {Colors} from "../../constants/Colors";
 
 export default function SignupScreen() {
@@ -28,6 +27,9 @@ export default function SignupScreen() {
   const [email, setEmail] = useState(''); 
   const [cpf, setCpf] = useState('');
   const [password, setPassword] = useState('');
+
+  // Forçar cor dos textos para branco
+  const textColor = '#fff';
 
   return (
     <ScrollView>
@@ -42,13 +44,7 @@ export default function SignupScreen() {
           activeOpacity={0.7}
           onPress={() => router.back()}
         >
-          <Image
-            source={ChevronLeft}
-            style={[styles.icon, { tintColor: Colors[theme].text }]}
-          />
-          <Text style={[styles.backText, { color: Colors[theme].text }]}>
-            voltar
-          </Text>
+          <Text style={[styles.backText, { color: textColor }]}>voltar</Text>
         </TouchableOpacity>
         {/* Avatar do macaco */}
         <View style={styles.logoContainer}>
@@ -58,11 +54,11 @@ export default function SignupScreen() {
           />
         </View>
         {/* Título de boas-vindas */}
-        <Text style={[styles.title, { color: Colors[theme].text }]}>
+        <Text style={[styles.title, { color: textColor }]}>
           Olá, bem vindo.
         </Text>
         {/* Nome de usuário */}
-        <Text style={[styles.label, { color: Colors[theme].text }]}>
+        <Text style={[styles.label, { color: textColor }]}>
           Nome de usuario:
         </Text>
         <TextInput
@@ -73,7 +69,7 @@ export default function SignupScreen() {
           onChangeText={setUsername}
         />
         {/* Email */}
-        <Text style={[styles.label, { color: Colors[theme].text }]}>
+        <Text style={[styles.label, { color: textColor }]}>
           Email:
         </Text>
         <TextInput
@@ -86,7 +82,7 @@ export default function SignupScreen() {
           onChangeText={setEmail}
         />
         {/* CPF */}
-        <Text style={[styles.label, { color: Colors[theme].text }]}>
+        <Text style={[styles.label, { color: textColor }]}>
           CPF:
         </Text>
         <TextInput
@@ -97,7 +93,7 @@ export default function SignupScreen() {
           onChangeText={setCpf}
         />
         {/* Senha */}
-        <Text style={[styles.label, { color: Colors[theme].text }]}>
+        <Text style={[styles.label, { color: textColor }]}>
           Senha:
         </Text>
         <TextInput
@@ -113,28 +109,23 @@ export default function SignupScreen() {
           style={[
             styles.button,
             {
-              backgroundColor:
-                username && email && cpf && password
-                  ? Colors[theme].buttonBackground
-                  : Colors[theme].buttonDisabled,
+              backgroundColor: '#fff', // Botão branco
             },
           ]}
           disabled={!username || !email || !cpf || !password}
           activeOpacity={0.7}
           onPress={() => { /* handle signup */ }}
         >
-          <Text style={[styles.buttonText, { color: Colors[theme].buttonText }]}>
-            Cadastrar
-          </Text>
+          <Text style={[styles.buttonText, { color: '#4A90E2' }]}>Cadastrar</Text>
         </TouchableOpacity>
         {/* Link para login */}
         <TouchableOpacity onPress={() => router.push('./LoginScreen')}>
-          <Text style={[styles.link, { color: Colors[theme].link }]}>
+          <Text style={[styles.link, { color: textColor }]}>
             Já possui conta? Fazer login
           </Text>
         </TouchableOpacity>
         {/* Rodapé de crédito */}
-        <Text style={[styles.footer, { color: Colors[theme].textSecondary }]}>
+        <Text style={[styles.footer, { color: textColor }]}>
           ©WindRoseCode
         </Text>
       </LinearGradient>
@@ -149,18 +140,16 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
   },
   backButton: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    alignSelf: 'flex-start',
     marginBottom: 30,
-  },
-  icon: {
-    width: 24,
-    height: 24,
+    marginLeft: 0,
   },
   backText: {
-    marginLeft: 8,
     fontSize: 16,
     textTransform: 'lowercase',
+    color: '#fff',
+    paddingLeft: 8,
+    paddingRight: 8,
   },
   logoContainer: {
     alignItems: 'center',
