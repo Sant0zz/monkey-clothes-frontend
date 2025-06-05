@@ -7,12 +7,14 @@ export const Colors = {
     text: '#000000',
     inputBackground: '#ffffff',
     placeholder: '#999999',
-    buttonBackground: '#4A90E2',
+    buttonBackground: '#C8C8C8',
     buttonDisabled: '#cccccc',
     buttonText: '#ffffff',
     link: '#357ABD',
     textSecondary: '#666666',
+    background: '#F5F5F5', // Adicionado para compatibilidade
   },
+  
   dark: {
     text: '#ffffff',
     inputBackground: '#1c1c1c',
@@ -22,5 +24,6 @@ export const Colors = {
     buttonText: '#ffffff',
     link: '#4A90E2',
     textSecondary: '#999999',
+    background: '#222831', // Adicionado para compatibilidade
   },
 }
