@@ -7,6 +7,7 @@ import {
   Image,
   StyleSheet,
   Platform,
+  ScrollView, // Adicionado ScrollView
 } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 import { StatusBar } from 'expo-status-bar';
@@ -51,17 +52,12 @@ export default function AdicionarProduto() {
 
   return (
     // Estrutura principal da tela
-    <View style={styles.fullScreen}>
+    <ScrollView
+      contentContainerStyle={styles.fullScreen} // Usando contentContainerStyle
+      keyboardShouldPersistTaps="handled"
+      showsVerticalScrollIndicator={false}
+    >
       <StatusBar style="dark" />
-
-      {/* Botão de voltar para navegação */}
-      <TouchableOpacity
-        style={styles.backButton}
-        activeOpacity={0.7}
-        onPress={() => router.back()}
-      >
-        <Text style={styles.backText}>voltar</Text>
-      </TouchableOpacity>
 
       {/* Cabeçalho com título e perfil do usuário */}
       <View style={styles.header}>
@@ -194,7 +190,7 @@ export default function AdicionarProduto() {
       >
         <Text style={styles.submitText}>ENVIAR</Text>
       </TouchableOpacity>
-    </View>
+    </ScrollView>
   );
 }
 
@@ -206,24 +202,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 0,
     backgroundColor: '#FFF',
     alignItems: 'center',
-  },
-  backButton: {
-    position: 'absolute',
-    top: Platform.select({ ios: 10, default: 10 }),
-    left: 10,
-    zIndex: 10,
-    paddingVertical: 0,
-    paddingHorizontal: 2,
-    minWidth: 0,
-    alignItems: 'flex-start',
-    justifyContent: 'center',
-  },
-  backText: {
-    color: '#2196F3',
-    fontSize: 16,
-    fontWeight: '700',
-    textAlign: 'left',
-    textTransform: 'lowercase',
   },
   header: {
     flexDirection: 'row',

@@ -1,5 +1,3 @@
-
-
 import React, { useState } from 'react';
 import {
   View,
@@ -16,6 +14,7 @@ import {
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
+import BotaoVoltar from "../components/BotaoVoltar";
 
 
 const pedidosExemplo = [
@@ -73,11 +72,10 @@ const TelaPedidos = () => {
         <StatusBar barStyle="dark-content" />
 
         <View style={estilos.cabecalho}>
-          <TouchableOpacity onPress={() => navegador.back()} style={estilos.botaoVoltar}>
-            <Ionicons name="chevron-back" size={24} color="#007AFF" />
-            <Text style={estilos.textoBotaoVoltar}>voltar</Text>
-          </TouchableOpacity>
-          <View style={estilos.perfilCabecalho}>
+          {/* Botão Voltar no canto superior esquerdo */}
+          <BotaoVoltar onPress={() => navegador.back()} />
+          {/* Perfil no canto superior direito */}
+          <View style={estilos.perfilCabecalhoDireita}>
             <Text style={estilos.textoPerfil}>Olá, Adm.</Text>
             <Image
               source={require('../../assets/images/logo.png')}
@@ -152,6 +150,8 @@ const TelaPedidos = () => {
             </Pressable>
           </Modal>
         )}
+
+        
       </View>
     </SafeAreaView>
   );
@@ -161,10 +161,21 @@ const TelaPedidos = () => {
 const estilos = StyleSheet.create({
   areaSegura: { flex: 1, backgroundColor: '#F2F2F7' },
   container: { flex: 1, paddingHorizontal: 20 },
-  cabecalho: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginTop: 10 },
-  botaoVoltar: { flexDirection: 'row', alignItems: 'center' },
-  textoBotaoVoltar: { color: '#007AFF', fontSize: 17 },
+  cabecalho: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'flex-start',
+    marginTop: 10,
+    position: 'relative',
+    minHeight: 52,
+  },
   perfilCabecalho: { flexDirection: 'row', alignItems: 'center' },
+  perfilCabecalhoDireita: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginLeft: 'auto',
+    marginTop: 0,
+  },
   textoPerfil: { color: '#8A8A8E', marginRight: 8 },
   avatar: { width: 36, height: 36, borderRadius: 18 },
   titulo: { fontSize: 34, fontWeight: 'bold', color: '#D1D1D6', marginTop: 20, marginLeft: 5 },
