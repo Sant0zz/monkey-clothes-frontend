@@ -15,6 +15,7 @@ import {
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
+import BotaoVoltar from '../components/BotaoVoltar';
 
 const { width } = Dimensions.get('window');
 
@@ -143,10 +144,6 @@ const TelaUsuarios = () => {
       <StatusBar barStyle="dark-content" />
 
       <View style={estilos.header}>
-        <TouchableOpacity onPress={() => navegador.back()} style={estilos.backButton}>
-          <Ionicons name="chevron-back" size={24} color="#007AFF" />
-          <Text style={estilos.backButtonText}>voltar</Text>
-        </TouchableOpacity>
         <View style={estilos.headerProfile}>
           <Text style={estilos.profileText}>Olá, Adm.</Text>
           <Image
@@ -154,6 +151,8 @@ const TelaUsuarios = () => {
             style={estilos.avatarAdm}
           />
         </View>
+        {/* Botão Voltar */}
+        <BotaoVoltar onPress={() => navegador.back()} />
       </View>
 
       <Text style={estilos.tituloPrincipal}>USUÁRIOS</Text>
@@ -253,8 +252,6 @@ const TelaUsuarios = () => {
 const estilos = StyleSheet.create({
   safeArea: { flex: 1, backgroundColor: '#F2F2F7' },
   header: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginTop: 10, paddingHorizontal: 20 },
-  backButton: { flexDirection: 'row', alignItems: 'center' },
-  backButtonText: { color: '#007AFF', fontSize: 17 },
   headerProfile: { flexDirection: 'row', alignItems: 'center' },
   profileText: { color: '#8A8A8E', marginRight: 8 },
   avatarAdm: { width: 36, height: 36, borderRadius: 18 },

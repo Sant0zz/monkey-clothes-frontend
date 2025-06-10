@@ -15,6 +15,7 @@ import {
     TouchableOpacity,
     View,
 } from 'react-native';
+import BotaoVoltar from "../components/BotaoVoltar";
 
 // Imagens
 const MonkeyLogo = require('../../assets/images/logo-branco.png');
@@ -38,14 +39,10 @@ export default function SignupScreen() {
         style={styles.fullScreen}
       >
         <StatusBar style={theme === 'light' ? "dark" : "light"} />
-        {/* Header com botão Voltar */}
-        <TouchableOpacity
-          style={styles.backButton}
-          activeOpacity={0.7}
-          onPress={() => router.back()}
-        >
-          <Text style={[styles.backText, { color: textColor }]}>voltar</Text>
-        </TouchableOpacity>
+        {/* Botão Voltar no canto superior esquerdo da box */}
+        <View style={{ alignItems: 'flex-start', marginBottom: 12, marginTop: -8 }}>
+          <BotaoVoltar onPress={() => router.back()} />
+        </View>
         {/* Avatar do macaco */}
         <View style={styles.logoContainer}>
           <Image
@@ -138,18 +135,6 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingTop: Platform.select({ ios: 50, default: 20 }),
     paddingHorizontal: 20,
-  },
-  backButton: {
-    alignSelf: 'flex-start',
-    marginBottom: 30,
-    marginLeft: 0,
-  },
-  backText: {
-    fontSize: 16,
-    textTransform: 'lowercase',
-    color: '#fff',
-    paddingLeft: 8,
-    paddingRight: 8,
   },
   logoContainer: {
     alignItems: 'center',

@@ -16,6 +16,7 @@ import { useRouter } from 'expo-router';
 // Corrigindo imports para caminhos relativos corretos
 import { useColorScheme } from '../../constants/hooks/useColorScheme';
 import { Colors } from '../../constants/Colors';
+import BotaoVoltar from "../components/BotaoVoltar";
 
 // ícones de grid
 const vendasIcon = require('../../assets/images/vendas.png');
@@ -51,12 +52,8 @@ export default function PainelScreen() {
       <View style={{ flex: 1, paddingBottom: 80 }}>
         {/* 2. Header */}
         <View style={styles.header}>
-          <TouchableOpacity onPress={() => router.back()} style={styles.backBtn}>
-            <Text style={[styles.backText, { color: Colors[theme].text }]}>voltar</Text>
-          </TouchableOpacity>
-
+          <BotaoVoltar onPress={() => router.back()} />
           <Text style={[styles.title, { color: Colors[theme].text }]}>PAINEL</Text>
-
           <View style={styles.profileContainer}>
             <Text style={[styles.profileText, { color: Colors[theme].text }]}>Olá, Adm.</Text>
             <Image source={MonkeyLogo} style={styles.profileAvatar} />
@@ -134,8 +131,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 8,
     borderRadius: 8,
   },
-  backBtn: { flexDirection: 'row', alignItems: 'center' },
-  backText: { marginLeft: 6, fontSize: 14, textTransform: 'lowercase' },
   title: { fontSize: 24, fontWeight: '700' },
   profileContainer: { flexDirection: 'row', alignItems: 'center' },
   profileText: { marginRight: 8, fontSize: 14 },
