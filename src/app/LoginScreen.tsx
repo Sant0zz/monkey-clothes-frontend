@@ -17,6 +17,7 @@ import {
   View
 } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
+import BotaoVoltar from "../components/BotaoVoltar";
 
 // Images
 const MonkeyLogo = require('../../assets/images/logo-branco.png');
@@ -74,14 +75,10 @@ export default function LoginScreen() {
           colors={['#4A90E2', '#357ABD']}
           style={styles.formBox}
         >
-          {/* Header com botão Voltar */}
-          <TouchableOpacity
-            style={styles.backButton}
-            activeOpacity={0.7}
-            onPress={() => router.back()}
-          >
-            <Text style={[styles.backText, { color: textColor }]}>voltar</Text>
-          </TouchableOpacity>
+          {/* Botão Voltar no canto superior esquerdo da box */}
+          <View style={{ alignItems: 'flex-start', marginBottom: 12, marginTop: -8 }}>
+            <BotaoVoltar onPress={() => router.back()} />
+          </View>
           {/* Avatar do macaco */}
           <View style={styles.logoContainer}>
             <Image source={MonkeyLogo} style={{ width: 80, height: 80 }} />
@@ -153,18 +150,6 @@ const styles = StyleSheet.create({
     shadowRadius: 8,
     elevation: 8,
     marginVertical: 40,
-  },
-  backButton: {
-    alignSelf: 'flex-start',
-    marginBottom: 18,
-    marginLeft: 0,
-  },
-  backText: {
-    fontSize: 12,
-    textTransform: 'uppercase',
-    color: '#fff',
-    paddingLeft: 1,
-    paddingRight: 8,
   },
   logoContainer: {
     alignItems: 'center',

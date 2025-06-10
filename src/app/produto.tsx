@@ -18,8 +18,11 @@ import {
   Barcode,
   Money,
 } from "phosphor-react-native";
+import { useRouter } from "expo-router";
+import BotaoVoltar from "../components/BotaoVoltar";
 
 export default function TelaProduto() {
+  const router = useRouter();
   const [modalVisivel, setModalVisivel] = useState(false);
   const [pagamentoSelecionado, setPagamentoSelecionado] = useState("Cartão");
   const [quantidade, setQuantidade] = useState(1);
@@ -46,10 +49,10 @@ export default function TelaProduto() {
     <View style={estilos.container}>
       <ScrollView contentContainerStyle={{ paddingBottom: 100 }}>
         <View style={estilos.cabecalho}>
-          <TouchableOpacity style={estilos.botaoVoltar}>
-            <Text style={estilos.textoVoltar}>voltar</Text>
-          </TouchableOpacity>
-          <View style={estilos.saudacao}>
+          {/* Botão Voltar no canto superior esquerdo */}
+          <BotaoVoltar onPress={() => router.replace("/home")} />
+          {/* Saudação e avatar no canto superior direito */}
+          <View style={estilos.saudacaoDireita}>
             <Text style={estilos.textoOla}>Olá, Rodrigo Faro.</Text>
             <Image
               source={require("../../assets/images/avatar.png")}
@@ -275,14 +278,18 @@ const estilos = StyleSheet.create({
   cabecalho: {
     flexDirection: "row",
     justifyContent: "space-between",
+    alignItems: "flex-start",
     padding: 16,
-    marginTop: 50,
+    marginTop: 10, // reduzido para aproximar do topo
+    position: "relative",
+    minHeight: 52,
   },
   botaoVoltar: {
     backgroundColor: "#D0E8FF",
     paddingHorizontal: 12,
     paddingVertical: 6,
     borderRadius: 8,
+    marginLeft: 4, // Adiciona espaçamento da borda esquerda
   },
   textoVoltar: {
     color: "#007AFF",
@@ -290,6 +297,12 @@ const estilos = StyleSheet.create({
     fontWeight: "bold",
   },
   saudacao: { flexDirection: "row", alignItems: "center" },
+  saudacaoDireita: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginLeft: "auto",
+    marginTop: 0,
+  },
   textoOla: { marginRight: 8, textDecorationLine: "underline" },
   avatar: { width: 30, height: 30, borderRadius: 15 },
   imagemProduto: {
