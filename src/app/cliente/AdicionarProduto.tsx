@@ -12,14 +12,13 @@ import {
 import { Picker } from '@react-native-picker/picker';
 import { StatusBar } from 'expo-status-bar';
 import { useRouter } from 'expo-router';
-import { useColorScheme } from '../../constants/hooks/useColorScheme';
+import { useColorScheme } from '../../../constants/hooks/useColorScheme';
 import { Colors } from '@/constants/Colors';
 import * as ImagePicker from 'expo-image-picker';
 
 // Imagens PNG necessárias
-;
-import MonkeyLogo from '../../assets/images/MonkeyLogo.png';
-import ImgPlaceholder from '../../assets/images/img.png';
+import monkeyLogo from '../../../assets/images/MonkeyLogo.png';
+import imgPlaceholder from '../../../assets/images/img.png';
 
 export default function AdicionarProduto() {
   // Hooks de tema, navegação e estados do formulário
@@ -66,7 +65,7 @@ export default function AdicionarProduto() {
         </View>
         <View style={styles.profileContainer}>
           <Text style={styles.profileText}>Olá, Adm.</Text>
-          <Image source={MonkeyLogo} style={styles.profileAvatar} />
+          <Image source={monkeyLogo} style={styles.profileAvatar} />
         </View>
       </View>
 
@@ -119,7 +118,7 @@ export default function AdicionarProduto() {
               {imagemUri ? (
                 <Image source={{ uri: imagemUri }} style={styles.selectedImage} />
               ) : (
-                <Image source={ImgPlaceholder} style={styles.iconSmall} />
+                <Image source={imgPlaceholder} style={styles.iconSmall} />
               )}
             </TouchableOpacity>
           </View>

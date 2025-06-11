@@ -1,12 +1,13 @@
 import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity, ScrollView, Pressable } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import { BellRinging, Bookmark, MagnifyingGlass, SlidersHorizontal, Star } from "phosphor-react-native";
+import { router } from "expo-router";
 
 const categories = [
-  { title: "Blusas", image: require("../../assets/images/blusas.png") },
-  { title: "Tênis", image: require("../../assets/images/tenis.png") },
-  { title: "Moletom", image: require("../../assets/images/moletom.png") },
-  { title: "Calças", image: require("../../assets/images/calcas.png") },
+  { title: "Blusas", image: require("../../../../assets/images/blusas.png") },
+  { title: "Tênis", image: require("../../../../assets/images/tenis.png") },
+  { title: "Moletom", image: require("../../../../assets/images/moletom.png") },
+  { title: "Calças", image: require("../../../../assets/images/calcas.png") },
 ];
 
 export default function Index() {
@@ -16,7 +17,7 @@ export default function Index() {
 
       <View style={estilos.cabecalho}>
         <View style={estilos.cabecalhoEsquerda}>
-          <Image source={require("../../assets/images/logo.png")} style={estilos.logoMarca} />
+          <Image source={require("../../../../assets/images/logo.png")} style={estilos.logoMarca} />
           <Text style={estilos.textoCabecalhoEsquerda}>Monkeys clothes</Text>
         </View>
         <View style={estilos.cabecalhoDireita}>
@@ -52,7 +53,7 @@ export default function Index() {
       </View>
 
       <TouchableOpacity style={estilos.botaoMeio} activeOpacity={0.7} onPress={() => alert("Botão pressionado!")}>
-        <Image source={require("../../assets/images/botaomeio.png")} style={estilos.imagemBotaoMeio} />
+        <Image source={require("../../../../assets/images/botaomeio.png")} style={estilos.imagemBotaoMeio} />
       </TouchableOpacity>
 
       {/* Título + Categorias */}
@@ -77,8 +78,8 @@ export default function Index() {
 
       <View style={estilos.containerProdutos}>
         <View style={estilos.cartaoProduto}>
-          <Pressable style={estilos.botaoCartao}>
-            <Image style={estilos.imagemCartao} source={require("../../assets/images/ducks.png")} />
+          <Pressable style={estilos.botaoCartao} onPress={async () => {router.push("/usuario/produto")}}>
+            <Image style={estilos.imagemCartao} source={require("../../../../assets/images/ducks.png")} />
             <View style={estilos.infoCartao}>
               <View style={estilos.cabecalhoCartao}>
                 <Text style={estilos.tituloInfoCartao}>NHL Ducks Home Jersey</Text>

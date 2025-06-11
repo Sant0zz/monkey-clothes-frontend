@@ -13,8 +13,8 @@ import {
   Pressable, 
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { useRouter } from 'expo-router';
-import BotaoVoltar from "../components/BotaoVoltar";
+import { router, useRouter } from 'expo-router';
+import BotaoVoltar from "../../components/BotaoVoltar";
 
 
 const pedidosExemplo = [
@@ -78,7 +78,7 @@ const TelaPedidos = () => {
           <View style={estilos.perfilCabecalhoDireita}>
             <Text style={estilos.textoPerfil}>Olá, Adm.</Text>
             <Image
-              source={require('../../assets/images/logo.png')}
+              source={require('../../../assets/images/logo.png')}
               style={estilos.avatar}
             />
           </View>
@@ -136,7 +136,7 @@ const TelaPedidos = () => {
                   </Text>
                 </View>
 
-                <TouchableOpacity style={estilos.botaoNFC}>
+                <TouchableOpacity style={estilos.botaoNFC} onPress={() => {}}>
                   <Text style={estilos.textoBotaoNFC}>Imprimir-NFCe</Text>
                 </TouchableOpacity>
 

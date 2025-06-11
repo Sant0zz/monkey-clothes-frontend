@@ -1,3 +1,4 @@
+import { router } from 'expo-router';
 import React from 'react';
 import {
   SafeAreaView,
@@ -63,7 +64,7 @@ const TelaStatusPedido = ({ navigation }) => {
       {/* --- Cabeçalho --- */}
       <View style={styles.headerContainer}>
         <TouchableOpacity 
-          onPress={() => navigation?.goBack()} 
+          onPress={() => router.back} 
           style={styles.backButton}
           accessibilityLabel="Voltar para a tela anterior" // Adicionado para acessibilidade
         >

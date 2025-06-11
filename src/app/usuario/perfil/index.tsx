@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Text, Image, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { FontAwesome } from '@expo/vector-icons';
+import { router } from 'expo-router';
 
 interface PropsPerfil {
   nomeUsuario: string;
@@ -19,28 +20,9 @@ const TelaPerfil: React.FC<PropsPerfil> = ({
   aoIrParaStatusEntrega, 
 }) => {
 
-  const voltar = () => {
-    if (aoVoltar) {
-      aoVoltar();
-    } else {
-      console.warn('Função aoVoltar não fornecida para o botão Voltar.');
-    }
-  };
-
-  const irParaStatusEntrega = () => {
-    if (aoIrParaStatusEntrega) {
-      aoIrParaStatusEntrega();
-    } else {
-      console.warn('Função aoIrParaStatusEntrega não fornecida para o botão de status da entrega.');
-    }
-  };
 
   return (
     <SafeAreaView style={estilos.container}>
-      <TouchableOpacity onPress={voltar} style={estilos.botaoVoltar}>
-        <Text style={estilos.textoBotaoVoltar}>{"< voltar"}</Text>
-      </TouchableOpacity>
-
       <Text style={estilos.tituloPrincipal}>PERFIL</Text> 
 
       <ScrollView contentContainerStyle={estilos.conteudoScroll}>
@@ -59,9 +41,9 @@ const TelaPerfil: React.FC<PropsPerfil> = ({
             <Text style={estilos.textoOpcao}>Editar Perfil</Text>
           </TouchableOpacity>
 
-          <TouchableOpacity style={estilos.botaoOpcao} onPress={irParaStatusEntrega}>
+          <TouchableOpacity style={estilos.botaoOpcao} onPress={() => {router.push("/usuario/perfil/pedido")}}>
             <FontAwesome name="truck" size={20} color="#666" style={estilos.iconeOpcao} />
-            <Text style={estilos.textoOpcao}>Status da Entrega</Text>
+            <Text style={estilos.textoOpcao}>Pedidos</Text>
           </TouchableOpacity>
 
           <TouchableOpacity style={estilos.botaoOpcao}>

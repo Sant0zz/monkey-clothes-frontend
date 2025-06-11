@@ -14,24 +14,24 @@ import { StatusBar } from 'expo-status-bar';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useRouter } from 'expo-router';
 // Corrigindo imports para caminhos relativos corretos
-import { useColorScheme } from '../../constants/hooks/useColorScheme';
-import { Colors } from '../../constants/Colors';
-import BotaoVoltar from "../components/BotaoVoltar";
+import { useColorScheme } from '../../../constants/hooks/useColorScheme';
+import { Colors } from '../../../constants/Colors';
+import BotaoVoltar from "../../components/BotaoVoltar";
 
 // ícones de grid
-const vendasIcon = require('../../assets/images/vendas.png');
-const avaliacoesIcon = require('../../assets/images/avaliacoes.png');
-const pedidosIcon = require('../../assets/images/pedidos.png');
-const promocoesIcon = require('../../assets/images/promocoes.png');
-const usuariosIcon = require('../../assets/images/usuarios.png');
-const adicionarProdutosIcon = require('../../assets/images/adicionar_produtos.png');
-const removerProdutosIcon = require('../../assets/images/remover_produtos.png');
+const vendasIcon = require('../../../assets/images/vendas.png');
+const avaliacoesIcon = require('../../../assets/images/avaliacoes.png');
+const pedidosIcon = require('../../../assets/images/pedidos.png');
+const promocoesIcon = require('../../../assets/images/promocoes.png');
+const usuariosIcon = require('../../../assets/images/usuarios.png');
+const adicionarProdutosIcon = require('../../../assets/images/adicionar_produtos.png');
+const removerProdutosIcon = require('../../../assets/images/remover_produtos.png');
 // ícones de navegação
-import favoritosIcon from '../../assets/images/favoritos.png';
-import homeIcon from '../../assets/images/home-icon.png';
-import comprasIcon from '../../assets/images/compras.png';
+import favoritosIcon from '../../../assets/images/favoritos.png';
+import homeIcon from '../../../assets/images/home-icon.png';
+import comprasIcon from '../../../assets/images/compras.png';
 // avatar e voltar
-import MonkeyLogo from '../../assets/images/MonkeyLogo.png';
+import monkeyLogo from '../../../assets/images/MonkeyLogo.png';
 import { Scroll } from 'phosphor-react-native';
 
 export default function PainelScreen() {
@@ -56,7 +56,7 @@ export default function PainelScreen() {
           <Text style={[styles.title, { color: Colors[theme].text }]}>PAINEL</Text>
           <View style={styles.profileContainer}>
             <Text style={[styles.profileText, { color: Colors[theme].text }]}>Olá, Adm.</Text>
-            <Image source={MonkeyLogo} style={styles.profileAvatar} />
+            <Image source={monkeyLogo} style={styles.profileAvatar} />
           </View>
         </View>
 
@@ -64,11 +64,11 @@ export default function PainelScreen() {
           {[
             { icon: vendasIcon, label: 'Vendas', onPress: () => {} },
             { icon: avaliacoesIcon, label: 'Avaliações', onPress: () => {} },
-            { icon: pedidosIcon, label: 'Pedidos', onPress: () => {} },
+            { icon: pedidosIcon, label: 'Pedidos', onPress: () => {router.push("/cliente/pedidos")}},
             { icon: promocoesIcon, label: 'Promoções', onPress: () => {} },
-            { icon: usuariosIcon, label: 'Usuários', onPress: () => {} },
-            { icon: adicionarProdutosIcon, label: 'Adicionar Produtos', onPress: () => {} },
-            { icon: removerProdutosIcon, label: 'Remover Produtos', onPress: () => {} },
+            { icon: usuariosIcon, label: 'Usuários', onPress: () => {router.push("/cliente/usuarios")} },
+            { icon: adicionarProdutosIcon, label: 'Adicionar Produtos', onPress: () => {router.push("/cliente/AdicionarProduto")} },
+            { icon: removerProdutosIcon, label: 'Config', onPress: () => {router.replace("/config")} },
             {}, // célula vazia
             {}, // célula vazia
           ].map((item, idx) =>
