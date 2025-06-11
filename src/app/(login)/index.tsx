@@ -1,6 +1,6 @@
 // app/LoginScreen.tsx
 
-import { useColorScheme } from 'react-native';
+import { Alert, useColorScheme } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useRouter } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
@@ -17,10 +17,11 @@ import {
   View
 } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
-import BotaoVoltar from "../components/BotaoVoltar";
+import BotaoVoltar from "../../components/BotaoVoltar";
+import api from '../../service/api';
 
 // Images
-const MonkeyLogo = require('../../assets/images/logo-branco.png');
+const MonkeyLogo = require('../../../assets/images/logo-branco.png');
 
 export const Colors = {
   light: {
@@ -60,6 +61,20 @@ export default function LoginScreen() {
   const router = useRouter();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+
+const entrar = async () => {
+  try {
+    const resposta = await api.post('/usuario', {email: username, senha : password})
+    console.log("deu isso daqui: " + resposta.data)
+    if (resposta.data.admin) {
+        router.push("/cliente")
+      } else {
+        router.push("/usuario")
+      }
+  } catch (error) {
+    console.log("deu merda: ")
+  }
+}
 
   // Forçar cor dos textos para branco
   const textColor = '#fff';
@@ -117,12 +132,12 @@ export default function LoginScreen() {
             style={styles.button}
             disabled={!username || !password}
             activeOpacity={0.7}
-            onPress={() => {/* handle login */}}
+            onPress={entrar}
           >
             <Text style={styles.buttonText}>Entrar</Text>
           </TouchableOpacity>
           {/* Link de cadastro */}
-          <TouchableOpacity onPress={() => router.push('./SingupScreen')}>
+          <TouchableOpacity onPress={() => router.push('/login/cadastro')}>
             <Text style={styles.signupText}>Não possui conta? <Text style={styles.signupLink}>Cadastre-se</Text></Text>
           </TouchableOpacity>
           {/* Rodapé de crédito */}

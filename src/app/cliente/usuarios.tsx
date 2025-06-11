@@ -15,7 +15,7 @@ import {
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
-import BotaoVoltar from '../components/BotaoVoltar';
+import BotaoVoltar from '../../components/BotaoVoltar';
 
 const { width } = Dimensions.get('window');
 
@@ -29,7 +29,7 @@ const dadosExemploUsuarios = [
     endereco: 'Rua das Flores, 123',
     statusInicial: 'Ativo',
     ultimaCompra: new Date('2025-05-20T10:00:00Z'),
-    avatar: require('../../assets/images/logo.png'),
+    avatar: require('../../../assets/images/logo.png'),
   },
   {
     id: '2',
@@ -40,7 +40,7 @@ const dadosExemploUsuarios = [
     endereco: 'Av. Principal, 456',
     statusInicial: 'Inativo',
     ultimaCompra: new Date('2025-04-01T15:30:00Z'),
-    avatar: require('../../assets/images/logo.png'),
+    avatar: require('../../../assets/images/logo.png'),
   },
   {
     id: '3',
@@ -51,7 +51,7 @@ const dadosExemploUsuarios = [
     endereco: 'Travessa da Paz, 789',
     statusInicial: 'Pendente',
     ultimaCompra: new Date('2025-05-25T08:00:00Z'),
-    avatar: require('../../assets/images/logo.png'),
+    avatar: require('../../../assets/images/logo.png'),
   },
   {
     id: '4',
@@ -62,7 +62,7 @@ const dadosExemploUsuarios = [
     endereco: 'Rua do Sol, 10',
     statusInicial: 'Ativo',
     ultimaCompra: new Date('2025-03-10T11:00:00Z'),
-    avatar: require('../../assets/images/logo.png'),
+    avatar: require('../../../assets/images/logo.png'),
   },
   {
     id: '5',
@@ -73,7 +73,7 @@ const dadosExemploUsuarios = [
     endereco: 'Praça Central, 5',
     statusInicial: 'Inativo',
     ultimaCompra: new Date('2025-05-01T09:00:00Z'),
-    avatar: require('../../assets/images/logo.png'),
+    avatar: require('../../../assets/images/logo.png'),
   },
   {
     id: '6',
@@ -84,7 +84,7 @@ const dadosExemploUsuarios = [
     endereco: 'Alameda das Acácias, 20',
     statusInicial: 'Ativo',
     ultimaCompra: new Date('2025-05-30T14:00:00Z'),
-    avatar: require('../../assets/images/logo.png'),
+    avatar: require('../../../assets/images/logo.png'),
   },
 ];
 
@@ -147,7 +147,7 @@ const TelaUsuarios = () => {
         <View style={estilos.headerProfile}>
           <Text style={estilos.profileText}>Olá, Adm.</Text>
           <Image
-            source={require('../../assets/images/logo.png')}
+            source={require('../../../assets/images/logo.png')}
             style={estilos.avatarAdm}
           />
         </View>

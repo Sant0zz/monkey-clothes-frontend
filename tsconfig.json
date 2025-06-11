@@ -13,7 +13,7 @@
     "**/*.tsx",
     ".expo/types/**/*.ts",
     "expo-env.d.ts"
-  ],
+, "src/app/config.jsx"  ],
   "exclude": [
     "node_modules"
   ]

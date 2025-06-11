@@ -19,7 +19,7 @@ import {
   Money,
 } from "phosphor-react-native";
 import { useRouter } from "expo-router";
-import BotaoVoltar from "../components/BotaoVoltar";
+import BotaoVoltar from "../../../components/BotaoVoltar";
 
 export default function TelaProduto() {
   const router = useRouter();
@@ -50,19 +50,19 @@ export default function TelaProduto() {
       <ScrollView contentContainerStyle={{ paddingBottom: 100 }}>
         <View style={estilos.cabecalho}>
           {/* Botão Voltar no canto superior esquerdo */}
-          <BotaoVoltar onPress={() => router.replace("/home")} />
+          <BotaoVoltar onPress={() => router.push("/usuario")} />
           {/* Saudação e avatar no canto superior direito */}
           <View style={estilos.saudacaoDireita}>
             <Text style={estilos.textoOla}>Olá, Rodrigo Faro.</Text>
             <Image
-              source={require("../../assets/images/avatar.png")}
+              source={require("../../../../assets/images/avatar.png")}
               style={estilos.avatar}
             />
           </View>
         </View>
 
         <Image
-          source={require("../../assets/images/camiseta.png")}
+          source={require("../../../../assets/images/camiseta.png")}
           style={estilos.imagemProduto}
           resizeMode="contain"
         />
@@ -231,7 +231,7 @@ export default function TelaProduto() {
 
               <View style={estilos.produtoResumo}>
                 <Image
-                  source={require("../../assets/images/camiseta.png")}
+                  source={require("../../../../assets/images/camiseta.png")}
                   style={estilos.imagemProdutoResumo}
                 />
                 <View style={{ flex: 1, marginLeft: 10 }}>

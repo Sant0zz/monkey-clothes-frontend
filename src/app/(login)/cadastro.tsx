@@ -1,6 +1,6 @@
 // app/SignupScreen.tsx
 
-import { useColorScheme } from 'react-native';
+import { Alert, useColorScheme } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useRouter } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
@@ -15,11 +15,12 @@ import {
     TouchableOpacity,
     View,
 } from 'react-native';
-import BotaoVoltar from "../components/BotaoVoltar";
+import BotaoVoltar from "../../components/BotaoVoltar";
 
 // Imagens
-const MonkeyLogo = require('../../assets/images/logo-branco.png');
-import {Colors} from "../../constants/Colors";
+const MonkeyLogo = require('../../../assets/images/logo-branco.png');
+import {Colors} from "../../../constants/Colors";
+import api from '../../service/api';
 
 export default function SignupScreen() {
   const theme = useColorScheme() ?? 'light';
@@ -29,9 +30,51 @@ export default function SignupScreen() {
   const [cpf, setCpf] = useState('');
   const [password, setPassword] = useState('');
 
+  function validarCadastro() {
+    if (!email.includes("@") || email.startsWith("@") || email.endsWith("@")) {
+      alert("email invalido");
+      return false;
+    }
+
+    if (!/^\d{11}$/.test(cpf)) {
+      alert("CPF deve ter 11 números.");
+      return false;
+    }
+
+  // Validar senha
+  if (!password || password.length < 5) {
+    alert("Senha deve ter no mínimo 5 caracteres.");
+    return false;
+  }
+  return true;
+  }
+
+
+  const cadastrar = async () => {
+    
+    if (validarCadastro()) {
+      try {
+      const resposta = await api.post("/cliente", {
+        nome : username,
+        cpf : cpf,
+        usuario : {
+          email: email,
+          senha: password,
+          admin: false
+        }
+      })
+      router.push("/usuario/(home)")
+    } catch (error) {
+      console.log(error);
+      
+    }
+    }
+    
+  }
+
+
   // Forçar cor dos textos para branco
   const textColor = '#fff';
-
   return (
     <ScrollView>
       <LinearGradient
@@ -111,12 +154,12 @@ export default function SignupScreen() {
           ]}
           disabled={!username || !email || !cpf || !password}
           activeOpacity={0.7}
-          onPress={() => { /* handle signup */ }}
+          onPress={cadastrar}
         >
           <Text style={[styles.buttonText, { color: '#4A90E2' }]}>Cadastrar</Text>
         </TouchableOpacity>
         {/* Link para login */}
-        <TouchableOpacity onPress={() => router.push('./LoginScreen')}>
+        <TouchableOpacity onPress={() => router.push('/login')}>
           <Text style={[styles.link, { color: textColor }]}>
             Já possui conta? Fazer login
           </Text>
